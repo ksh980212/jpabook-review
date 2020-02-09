@@ -3,14 +3,25 @@ package jpabook.demo.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
+//@NamedQuery(
+//        name = "Member.findByName",
+//        query = "select m from Member m where m.name = :name"
+//)
+
+@NamedQueries({
+        @NamedQuery(
+                name = "Member.findByName",
+                query = "select m from Member m where m.name = :name"),
+        @NamedQuery(
+                name = "Member.count",
+                query = "select count(m) from Member m"
+        )
+})
 public class Member {
 
     @Id
